@@ -1,0 +1,36 @@
+<html>
+	<html>
+	<head>
+		<title>add actor's role in a movie</title>
+	</head>	
+	<body>
+				Add new actor in a movie: <br/>
+		<form action="./index.php?act=addMovieDirector" method="POST">
+			
+			Movie : <select name="mid">
+					<?php
+						while($row=mysql_fetch_assoc($movieInfoRs)){
+					?>
+					<option value="<?php echo $row['id'];?>"><?php echo $row['title'];?></option>
+					<?php
+						}
+					?>
+					</select>
+			<br/>
+			Director : <select name="did">
+					<?php
+						while($row=mysql_fetch_assoc($directorInfoRs)){
+					?>
+					<option value="<?php echo $row['id'];?>"><?php echo $row['first'],'-',$row['last'];?></option>
+					<?php
+						}
+					?>
+					</select>
+			<br/>
+			
+			<input type="submit" name="submit" value="Add it!!"/>
+					</form>
+		<hr/>
+				
+	</body>
+</html>

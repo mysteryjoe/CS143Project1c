@@ -1,0 +1,84 @@
+
+
+<html>
+	<html>
+	<head>
+		<title>Movie Information</title>
+	</head>	
+	<body>
+		<?php
+			if(false != $movieData){
+				foreach($movieData as $key => $val){
+		?>
+		
+		-- Show Movie Info -- <br/>Title: <?php echo $val['title'];?><br/>Producer: <?php echo $val['company'];?><br/>MPAA Rating: <?php echo $val['rating'];?><br/>Director: <font color='Green'>
+		<?php
+			$ret = '';
+			foreach($val['director'] as $k => $v){
+				$ret = $v['last'].$v['first'].',';
+			}
+			echo trim($ret, ',');
+		?>
+		</font><br/>
+		
+		Genre: <font color='Brown'><?php echo implode(',', $val['genre']);?></font><br/><br/>-- Actor in this movie -- <br/>
+		<?php
+			foreach($val['actor'] as $k => $v){
+		?>
+		<a href="./search.php?act=showActor&keyword=<?php echo $v['last'],'@@@',$v['first']?>"><?php echo $v['last'],$v['first'];?></a> act as "<?php echo $v['role'];?>"<br/>
+		<?php
+			}
+		?>
+		<?php
+			$score = array_map(function($v){
+				return $v['rating'];
+			}, $val['comment']);
+			$sum = array_sum($score);
+			$avg = $sum ? number_format($sum/count($score), 4) : 0;
+		?>
+		<br/>-- User Review -- <br>Average Score: <?php echo $avg;?>/5 (5.0 is best) by <?php echo count($val['comment']);?> reviews(s).<a href='/index.php?act=addComment&mid=<?php echo $val['id'];?>'>  Add your review now!!</a><br/>
+		All Comments in Details:<br/>
+		<?php
+			foreach($val['comment'] as $k => $v){
+		?>
+		<font color='Blue'>In <?php echo $v['time'];?>, <font color='Red'><?php echo $v['name'];?></font> said:
+		<?php
+			switch($v['rating']){
+				case 1:
+					echo 'I hate it';
+					break;
+				case 2:
+					echo 'Not worth';
+					break;
+				case 3:
+					echo 'It\'s ok~';
+					break;
+				case 4:
+					echo 'Good';
+					break;
+				case 5:
+					echo 'Excellent';
+					break;
+			}
+		?>
+		<font color='Red'><?php echo $v['rating'];?></font> <?php echo $v['comment'];?> </font><br/>
+		<?php
+			}
+		?>
+		<!-- Search Box -->
+		
+		
+<hr/>
+		
+		<?php
+				}
+			}
+		?>
+                Search for other actors/movies <form action="./search.php?act=showMovie" method="POST">
+                        Search: <input type="text" name="keyword"></input>
+                        <input type="submit" name="submit" value="Search"/>
+                </form>
+
+
+			</body>
+</html>

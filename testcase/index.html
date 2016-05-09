@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>Index</title>
+	</head>
+	<style>
+		body{
+			margin:0px auto;
+			padding:0px 0px;
+		}
+		body p{
+			display:inline-block;
+		}
+		.left,.right{
+			float:left;
+			margin-top:0px;
+			padding-top:0px;
+		}
+		.left{
+			width:400px;
+			height:800px;
+			border-right:1px solid #ccc;
+		}
+		.right{
+			width:800px;
+			height:800px;
+		}
+		.content{
+			width:800px;
+			height:800px;
+		}
+		.ul{
+			display:inline;
+			margin:0px;
+			padding:0px;
+		}
+	</style>
+	<base target="contentIframe" />
+	<body>
+		<div class="left">
+			<p>Add New Content :</p>
+			<ul>
+				<li><a href="./index.php?act=addActorDirector">Add Actor/Director</a></li>
+				<li><a href="./index.php?act=addMovie">Add Movie Information</a></li>
+				<li><a href="./index.php?act=addMovieActor">Add Movie / Actor Relation</a></li>
+				<li><a href="./index.php?act=addMovieDirector">Add Movie / Director Relation</a></li>
+			</ul>
+			<p>Browsering Content :</p>
+			<ul>
+				<li><a href="./search.php?act=showActor">Show Actor Information</a></li>
+				<li><a href="./search.php?act=showMovie">Show Movie Information</a></li>
+			</ul>
+			<p>Search Interface :</p>
+			<ul>
+				<li><a href="./search.php?act=showMovieActor">Search Actor/Movie</a></li>
+			</ul>
+		</div>
+		<div class="right">
+			<iframe class="content" name="contentIframe"></iframe>
+		</div>
+	</body>
+</html>

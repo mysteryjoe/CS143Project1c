@@ -1,0 +1,35 @@
+
+
+<html>
+	<html>
+	<head>
+		<title>Search Actor / Movie</title>
+	</head>	
+	<body>
+			
+			
+		Search for actors/movies
+		<form action="./search.php?act=showMovieActor" method="POST">		
+			Search: <input type="text" name="keyword"></input>
+			<input type="submit" name="submit" value="Search"/>
+		</form>
+		<hr/>
+		You are searching [Erin Brockovich] results...<br/><br/>Searching match records in Actor database ... <br/>Searching match records in Movie database ... <br/>
+		<?php
+			while($actorRow = mysql_fetch_assoc($actorRs)){
+		?>
+		Actor: <a href = "./search.php?act=showActor&keyword=<?php echo $actorRow['last'],'@@@',$actorRow['first']?>"><?php echo $actorRow['first'].$actorRow['last'].'('.$actorRow['dob'].')';?></a><br/>
+		<?php 
+			}
+		?>
+		<?php
+			while($movieRow = mysql_fetch_assoc($movieRs)){
+		?>
+		Movie: <a href = "./search.php?act=showMovie&keyword=<?php echo $movieRow['title'];?>"><?php echo $movieRow['title'].'('.$movieRow['year'].')';?></a><br/>
+		<?php 
+			}
+		?>
+		<hr/>		
+
+			</body>
+</html>

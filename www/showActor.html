@@ -1,0 +1,36 @@
+<html>
+	<html>
+	<head>
+		<title>Actor Information</title>
+	</head>	
+	<body>
+<?php 
+	if(false != $actorData){
+		foreach($actorData as $key => $val){
+			?>
+-- Show Actor Info -- 
+<br/>Name: <?php echo $val['last'],$val['first'];?><br/>Sex: <?php echo $val['sex'];?><br/>Date Of Birth: <?php echo $val['dob'];?><br/>Date Of Death: <?php echo $val['dod']?$val['dod']:'--Still Alive--';?><br/>
+
+
+<br/>-- Act in -- <br/>
+<?php
+	foreach($val['movieRole'] as $k => $v){
+	?>
+Act "<?php echo $v['role'];?>" in <a href = "./search.php?act=showMovie&keyword=<?php echo $v['title'];?>"><?php echo $v['title'];?></a><br/>	
+<?php
+	}
+?>	
+<hr/>
+<?php
+		}
+	}
+?>
+			
+		<!-- search box -->
+                Search for other actors/movies <form action="./search.php?act=showActor" method="POST">
+                        Search: <input type="text" name="keyword"></input>
+                        <input type="submit" name="submit" value="Search"/>
+                </form>
+
+			</body>
+</html>
